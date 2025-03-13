@@ -21,17 +21,23 @@ app.get('/logs', async (req, res) => {
             service2: logs2
         });
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching logs' });
+        console.error('Error fetching logs:', error.response ? error.response.data : error.message);
+        res.status(500).json({ message: 'Error fetching logs', details: error.response ? error.response.data : error.message });
     }
 });
 
 async function getLogs(serviceId) {
-    const response = await axios.get(`https://api.render.com/v1/services/${serviceId}/logs`, {
-        headers: {
-            'Authorization': `Bearer ${RENDER_API_TOKEN}`
-        }
-    });
-    return response.data;
+    try {
+        const response = await axios.get(`https://api.render.com/v1/services/${serviceId}/logs`, {
+            headers: {
+                'Authorization': `Bearer ${RENDER_API_TOKEN}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error(`Error fetching logs for service ${serviceId}:`, error.response ? error.response.data : error.message);
+        throw error;
+    }
 }
 
 app.listen(PORT, () => {
