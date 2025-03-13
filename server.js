@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,6 +12,10 @@ const RENDER_API_TOKEN = 'rnd_BzWfpgsmGbUAUZd4rgZKtoTINN5V';
 const SERVICE_ID_1 = 'srv-cv8kd0i3esus73dft3lg';
 const SERVICE_ID_2 = 'srv-cv8octogph6c73ae6a6g';
 
+// Serve static files (like index.html)
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Route for logs
 app.get('/logs', async (req, res) => {
     try {
         const logs1 = await getLogs(SERVICE_ID_1);
@@ -26,6 +31,7 @@ app.get('/logs', async (req, res) => {
     }
 });
 
+// Helper function to fetch logs from Render API
 async function getLogs(serviceId) {
     try {
         const response = await axios.get(`https://api.render.com/v1/services/${serviceId}/logs`, {
@@ -40,6 +46,7 @@ async function getLogs(serviceId) {
     }
 }
 
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
