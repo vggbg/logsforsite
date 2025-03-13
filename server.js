@@ -16,25 +16,12 @@ app.get('/logs', async (req, res) => {
         const logs1 = await getLogs(SERVICE_ID_1);
         const logs2 = await getLogs(SERVICE_ID_2);
 
-        res.send(`
-            <html>
-            <head>
-                <title>Service Logs</title>
-                <style>
-                    body { font-family: Arial, sans-serif; }
-                    pre { background-color: #f4f4f4; padding: 10px; border: 1px solid #ddd; }
-                </style>
-            </head>
-            <body>
-                <h1>Logs for Service 1</h1>
-                <pre>${logs1}</pre>
-                <h1>Logs for Service 2</h1>
-                <pre>${logs2}</pre>
-            </body>
-            </html>
-        `);
+        res.json({
+            service1: logs1,
+            service2: logs2
+        });
     } catch (error) {
-        res.status(500).send('Error fetching logs');
+        res.status(500).json({ message: 'Error fetching logs' });
     }
 });
 
