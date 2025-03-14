@@ -169,7 +169,7 @@
     </head>
     <body>
         <h3>Централизирани логове</h3>
-        <table>
+       <table>
             <tr>
                 <th>Услуга: vggbgcombot</th>
                 <th>Услуга: keepalliverender</th>
@@ -188,13 +188,11 @@
             socket.on("log", (data) => {
                 const target = data.service === "vggbgcombot" ? "logs1" : "logs2";
                 const logContainer = document.getElementById(target);
-                const logEntry = `[${new Date().toLocaleTimeString()}] ${data.message}`;
+                const logEntry = document.createElement("div");
+                logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${data.message}`;
                 
-                // Добавяне на новия лог най-отгоре
-                logContainer.textContent = logEntry + "\n" + logContainer.textContent;
-
-                // Скрол до началото (по избор, ако е нужно)
-                logContainer.scrollTop = 0;
+                // Добавяне на новия лог като първи елемент
+                logContainer.prepend(logEntry);
             });
         </script>
         <div class="footer">
