@@ -10,106 +10,111 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <style>
-                body:before,
-                body:after {
-                    content: "";
-                    position: fixed;
-                    left: 0;
-                    width: 100%;
-                    height: 10px;
-                    -webkit-box-shadow: 0px 0px 10px #424242;
-                    -moz-box-shadow: 0px 0px 10px #424242;
-                    box-shadow: 0px 0px 10px rgba(66, 66, 66, 0.5);
-                    z-index: 100;
-                }
+            body:before,
+            body:after {
+                content: "";
+                position: fixed;
+                left: 0;
+                width: 100%;
+                height: 10px;
+                -webkit-box-shadow: 0px 0px 10px #424242;
+                -moz-box-shadow: 0px 0px 10px #424242;
+                box-shadow: 0px 0px 10px rgba(66, 66, 66, 0.5);
+                z-index: 100;
+            }
 
-                body:before {
-                    top: -10px;
-                }
+            body:before {
+                top: -10px;
+            }
 
-                body:after {
-                    bottom: -10px;
-                }
+            body:after {
+                bottom: -10px;
+            }
 
-                body {
-                    font-family: "Arsenal", sans-serif;
-                    font-size: 100.01%;
-                    color: #424242;
-                    background-color: #ffffff;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-start;
-                    align-items: center;
-                    min-height: 100vh;
-                    margin: 0;
-                    padding-top: 80px;
-                }
+            body {
+                font-family: "Arsenal", sans-serif;
+                font-size: 100.01%;
+                color: #424242;
+                background-color: #ffffff;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                padding-top: 80px;
+            }
 
-                .logo-container {
-                    margin-bottom: 30px;
-                }
+            .logo-container {
+                margin-bottom: 30px;
+            }
 
-                .login-container {
-                    background-color: #fff;
-                    padding: 30px;
-                    border-radius: 6px;
-                    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-                    width: 300px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
+            .login-container {
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 6px;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+                width: 300px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
-                .login td {
-                    padding: 8px;
-                }
+            .login td {
+                padding: 8px;
+            }
 
-                .login input[type="text"],
-                .login input[type="password"] {
-                    width: 100%;
-                    padding: 5px;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    box-sizing: border-box;
-                    font-size: 14px;
-                    box-shadow: 0 0 5px rgba(53, 174, 255, 0.5);
-                }
+            .login input[type="text"],
+            .login input[type="password"] {
+                width: 100%;
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 14px;
+                box-shadow: 0 0 5px rgba(53, 174, 255, 0.5);
+            }
 
-                .login input[type="text"]:focus,
-                .login input[type="password"]:focus {
-                    box-shadow: 0 0 10px rgba(234, 87, 55, 0.8);
-                    outline: 1px solid #ea5737;
-                }
+            .login input[type="text"]:focus,
+            .login input[type="password"]:focus {
+                box-shadow: 0 0 10px rgba(234, 87, 55, 0.8);
+                outline: 1px solid #ea5737;
+            }
 
-                .input-button {
-                    padding: 8px 25px;
-                    background-color: #ea5737;
-                    color: #fff;
-                    border: none;
-                    border-radius: 6px;
-                    cursor: pointer;
-                    font-size: 16px;
-                    width: 100%;
-                    margin-top: 10px;
-                }
+            .input-button {
+                padding: 8px 25px;
+                background-color: #ea5737;
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 16px;
+                width: 100%;
+                margin-top: 10px;
+            }
 
-                .input-button:hover {
-                    background-color: #ff5733;
-                }
-
+            .input-button:hover {
+                background-color: #ff5733;
+            }
+            h3 {
+                text-align: center;
+                font-size: 16px;
+                color: #495057;
+            }
             table {
-                width: 80%;
+                width: 60%;
                 border-collapse: collapse;
             }
-            
-            th, td {
+
+            th,
+            td {
                 border: 1px solid #ddd;
                 padding: 10px;
                 text-align: left;
                 vertical-align: top;
-                width: 50%; /* Пропорционално разпределение */;
+                width: 50%; /* Пропорционално разпределение */
             }
-        
+
             th {
                 background-color: #f4f4f4;
                 font-size: 16px;
@@ -120,47 +125,50 @@
             }
             .logs {
                 white-space: pre-wrap;
+                font-family: "Courier New", Courier, monospace;
+                font-size: 14px;
+                color: #007bff;
             }
-                .footer {
-                    position: fixed;
-                    left: 0;
-                    bottom: 0;
-                    width: 100%;
-                    height: 60px;
-                    background-color: #f8f9fa;
-                    font-family: "Arsenal", sans-serif;
-                    color: #424242;
-                    text-align: center;
-                    padding-top: 10px;
-                    border-top: 1px solid #dee2e6;
-                }
+            .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 60px;
+                background-color: #f8f9fa;
+                font-family: "Arsenal", sans-serif;
+                color: #424242;
+                text-align: center;
+                padding-top: 10px;
+                border-top: 1px solid #dee2e6;
+            }
 
-                .footer a {
-                    color: #007bff;
-                    text-decoration: none;
-                    margin: 0 10px;
-                }
+            .footer a {
+                color: #007bff;
+                text-decoration: none;
+                margin: 0 10px;
+            }
 
-                .footer a:hover {
-                    text-decoration: underline;
-                }
+            .footer a:hover {
+                text-decoration: underline;
+            }
 
-                .email-label,
-                .password-label {
-                    color: #424242;
-                }
+            .email-label,
+            .password-label {
+                color: #424242;
+            }
 
-                .red-star {
-                    color: red;
-                }
+            .red-star {
+                color: red;
+            }
 
-                .statcounter {
-                    display: none;
-                }
+            .statcounter {
+                display: none;
+            }
         </style>
     </head>
     <body>
-        <h1>Централизирани логове</h1>
+        <h3>Централизирани логове</h3>
 
         <table>
             <tr>
