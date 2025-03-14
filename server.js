@@ -1,44 +1,37 @@
 const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
 const path = require('path');
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
+
 const PORT = process.env.PORT || 3000;
 
-// Статични файлове
+// Статични файлове (като index.html)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Рут за логовете
-app.get('/logs', async (req, res) => {
-    console.log('Получено запитване за логовете.');
+// WebSocket връзка
+io.on('connection', (socket) => {
+    console.log('Клиент се свърза чрез WebSocket.');
 
-    // Фиксирани отговори за тестване
-    const logs1 = { message: "Логовете за тази услуга не са налични. Проверете Render Dashboard." };
-    const logs2 = { message: "Логовете за тази услуга не са налични. Проверете Render Dashboard." };
+    // Симулирани логове от услуга 1
+    setInterval(() => {
+        socket.emit('log', { service: 'srv-cv8kd0i3esus73dft3lg', message: 'Лог от услуга 1: Всичко работи нормално.' });
+    }, 5000);
 
-    console.log(`Логове за услуга srv-cv8kd0i3esus73dft3lg:`, logs1);
-    console.log(`Логове за услуга srv-cv8octogph6c73ae6a6g:`, logs2);
+    // Симулирани логове от услуга 2
+    setInterval(() => {
+        socket.emit('log', { service: 'srv-cv8octogph6c73ae6a6g', message: 'Лог от услуга 2: Проверка на функционалността.' });
+    }, 7000);
 
-    res.json({
-        service1: logs1,
-        service2: logs2
-    });
-});
-
-// Рут за фиктивна основна информация на услугите
-app.get('/services/:serviceId', (req, res) => {
-    const serviceId = req.params.serviceId;
-    console.log(`Получено запитване за информация на услуга ${serviceId}.`);
-
-    // Връща фиктивна информация за услугата
-    res.json({
-        id: serviceId,
-        name: `Service ${serviceId}`,
-        status: "active",
-        details: "Това е фиктивна информация за тестване."
+    socket.on('disconnect', () => {
+        console.log('Клиентът прекъсна връзката.');
     });
 });
 
 // Стартиране на сървъра
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Сървърът е стартиран на порт ${PORT}`);
 });
