@@ -97,6 +97,28 @@
                 background-color: #ff5733;
             }
 
+             }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-size: 18px;
+        }
+        td {
+            height: 200px; /* Задава фиксирана височина за клетките */
+            overflow-y: auto; /* Добавя скрол ако логовете са много */
+        }
+        .logs {
+            white-space: pre-wrap;
+        }
             .footer {
                 position: fixed;
                 left: 0;
