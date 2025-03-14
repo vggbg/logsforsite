@@ -1,14 +1,1 @@
-{
-  "name": "render-logs",
-  "version": "1.0.0",
-  "description": "A simple server to fetch and display Render service logs",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "express": "^4.17.1"
-  },
-  "license": "MIT"
-}
+npm install express socket.io
