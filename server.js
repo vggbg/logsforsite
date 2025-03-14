@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 // API токен за Render
 const RENDER_API_TOKEN = 'rnd_BzWfpgsmGbUAUZd4rgZKtoTINN5V';
 
-// Услуги
+// Идентификатори на услуги
 const SERVICE_ID_1 = 'srv-cv8kd0i3esus73dft3lg';
 const SERVICE_ID_2 = 'srv-cv8octogph6c73ae6a6g';
 
@@ -18,13 +18,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Рут за логовете
 app.get('/logs', async (req, res) => {
     try {
-        console.log('Запитване за логовете получено.');
+        console.log('Получено запитване за логовете.');
 
         const logs1 = await getLogs(SERVICE_ID_1);
-        console.log(`Логове за услуга ${SERVICE_ID_1} извлечени успешно:`, logs1);
+        console.log(`Логове за услуга ${SERVICE_ID_1}:`, logs1);
 
         const logs2 = await getLogs(SERVICE_ID_2);
-        console.log(`Логове за услуга ${SERVICE_ID_2} извлечени успешно:`, logs2);
+        console.log(`Логове за услуга ${SERVICE_ID_2}:`, logs2);
 
         res.json({
             service1: logs1,
@@ -33,7 +33,7 @@ app.get('/logs', async (req, res) => {
     } catch (error) {
         console.error('Грешка при извличане на логовете:', error.response ? error.response.data : error.message);
         res.status(500).json({
-            message: 'Грешка при извличане на логовете',
+            message: 'Неуспешно извличане на логовете',
             details: error.response ? error.response.data : error.message
         });
     }
@@ -54,7 +54,7 @@ async function getLogs(serviceId) {
             return { message: "Нямате достъп до логовете за тази услуга." };
         }
         if (error.response && error.response.status === 404) {
-            console.error(`Логове за услуга ${serviceId} не са налични.`);
+            console.error(`Логовете за услуга ${serviceId} не са налични.`);
             return { message: "Логовете за тази услуга не са налични." };
         }
         console.error(`Непозната грешка за услуга ${serviceId}:`, error.response ? error.response.data : error.message);
