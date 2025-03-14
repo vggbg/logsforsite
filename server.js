@@ -19,8 +19,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/logs', async (req, res) => {
     try {
         console.log('Запитване за логовете получено.');
+
         const logs1 = await getLogs(SERVICE_ID_1);
         console.log(`Логове за услуга ${SERVICE_ID_1} извлечени успешно.`);
+
         const logs2 = await getLogs(SERVICE_ID_2);
         console.log(`Логове за услуга ${SERVICE_ID_2} извлечени успешно.`);
 
