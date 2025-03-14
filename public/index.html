@@ -10,183 +10,183 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <style>
-            body:before,
-            body:after {
-                content: "";
-                position: fixed;
-                left: 0;
+                body:before,
+                body:after {
+                    content: "";
+                    position: fixed;
+                    left: 0;
+                    width: 100%;
+                    height: 10px;
+                    -webkit-box-shadow: 0px 0px 10px #424242;
+                    -moz-box-shadow: 0px 0px 10px #424242;
+                    box-shadow: 0px 0px 10px rgba(66, 66, 66, 0.5);
+                    z-index: 100;
+                }
+
+                body:before {
+                    top: -10px;
+                }
+
+                body:after {
+                    bottom: -10px;
+                }
+
+                body {
+                    font-family: "Arsenal", sans-serif;
+                    font-size: 100.01%;
+                    color: #424242;
+                    background-color: #ffffff;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: center;
+                    min-height: 100vh;
+                    margin: 0;
+                    padding-top: 80px;
+                }
+
+                .logo-container {
+                    margin-bottom: 30px;
+                }
+
+                .login-container {
+                    background-color: #fff;
+                    padding: 30px;
+                    border-radius: 6px;
+                    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+                    width: 300px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .login td {
+                    padding: 8px;
+                }
+
+                .login input[type="text"],
+                .login input[type="password"] {
+                    width: 100%;
+                    padding: 5px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                    font-size: 14px;
+                    box-shadow: 0 0 5px rgba(53, 174, 255, 0.5);
+                }
+
+                .login input[type="text"]:focus,
+                .login input[type="password"]:focus {
+                    box-shadow: 0 0 10px rgba(234, 87, 55, 0.8);
+                    outline: 1px solid #ea5737;
+                }
+
+                .input-button {
+                    padding: 8px 25px;
+                    background-color: #ea5737;
+                    color: #fff;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    width: 100%;
+                    margin-top: 10px;
+                }
+
+                .input-button:hover {
+                    background-color: #ff5733;
+                }
+
+                 }
+            table {
                 width: 100%;
-                height: 10px;
-                -webkit-box-shadow: 0px 0px 10px #424242;
-                -moz-box-shadow: 0px 0px 10px #424242;
-                box-shadow: 0px 0px 10px rgba(66, 66, 66, 0.5);
-                z-index: 100;
+                border-collapse: collapse;
             }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background-color: #f4f4f4;
+                font-size: 18px;
+            }
+            td {
+                height: 200px; /* Задава фиксирана височина за клетките */
+                overflow-y: auto; /* Добавя скрол ако логовете са много */
+            }
+            .logs {
+                white-space: pre-wrap;
+            }
+                .footer {
+                    position: fixed;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 60px;
+                    background-color: #f8f9fa;
+                    font-family: "Arsenal", sans-serif;
+                    color: #424242;
+                    text-align: center;
+                    padding-top: 10px;
+                    border-top: 1px solid #dee2e6;
+                }
 
-            body:before {
-                top: -10px;
-            }
+                .footer a {
+                    color: #007bff;
+                    text-decoration: none;
+                    margin: 0 10px;
+                }
 
-            body:after {
-                bottom: -10px;
-            }
+                .footer a:hover {
+                    text-decoration: underline;
+                }
 
-            body {
-                font-family: "Arsenal", sans-serif;
-                font-size: 100.01%;
-                color: #424242;
-                background-color: #ffffff;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                min-height: 100vh;
-                margin: 0;
-                padding-top: 80px;
-            }
+                .email-label,
+                .password-label {
+                    color: #424242;
+                }
 
-            .logo-container {
-                margin-bottom: 30px;
-            }
+                .red-star {
+                    color: red;
+                }
 
-            .login-container {
-                background-color: #fff;
-                padding: 30px;
-                border-radius: 6px;
-                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-                width: 300px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .login td {
-                padding: 8px;
-            }
-
-            .login input[type="text"],
-            .login input[type="password"] {
-                width: 100%;
-                padding: 5px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                box-sizing: border-box;
-                font-size: 14px;
-                box-shadow: 0 0 5px rgba(53, 174, 255, 0.5);
-            }
-
-            .login input[type="text"]:focus,
-            .login input[type="password"]:focus {
-                box-shadow: 0 0 10px rgba(234, 87, 55, 0.8);
-                outline: 1px solid #ea5737;
-            }
-
-            .input-button {
-                padding: 8px 25px;
-                background-color: #ea5737;
-                color: #fff;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-                font-size: 16px;
-                width: 100%;
-                margin-top: 10px;
-            }
-
-            .input-button:hover {
-                background-color: #ff5733;
-            }
-
-             }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-            vertical-align: top;
-        }
-        th {
-            background-color: #f4f4f4;
-            font-size: 18px;
-        }
-        td {
-            height: 200px; /* Задава фиксирана височина за клетките */
-            overflow-y: auto; /* Добавя скрол ако логовете са много */
-        }
-        .logs {
-            white-space: pre-wrap;
-        }
-            .footer {
-                position: fixed;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                height: 60px;
-                background-color: #f8f9fa;
-                font-family: "Arsenal", sans-serif;
-                color: #424242;
-                text-align: center;
-                padding-top: 10px;
-                border-top: 1px solid #dee2e6;
-            }
-
-            .footer a {
-                color: #007bff;
-                text-decoration: none;
-                margin: 0 10px;
-            }
-
-            .footer a:hover {
-                text-decoration: underline;
-            }
-
-            .email-label,
-            .password-label {
-                color: #424242;
-            }
-
-            .red-star {
-                color: red;
-            }
-
-            .statcounter {
-                display: none;
-            }
+                .statcounter {
+                    display: none;
+                }
         </style>
     </head>
     <body>
-    <h1>Централизирани логове</h1>
+        <h1>Централизирани логове</h1>
 
-    <table>
-        <tr>
-            <th>Услуга: vggbgcombot</th>
-            <th>Услуга: keepalliverender</th>
-        </tr>
-        <tr>
-            <td id="logs1" class="logs">Зареждане...</td>
-            <td id="logs2" class="logs">Зареждане...</td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <th>Услуга: vggbgcombot</th>
+                <th>Услуга: keepalliverender</th>
+            </tr>
+            <tr>
+                <td id="logs1" class="logs">Зареждане...</td>
+                <td id="logs2" class="logs">Зареждане...</td>
+            </tr>
+        </table>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            const socket = io();
 
-        // Получаване на логове и добавяне към правилната клетка
-        socket.on('log', (data) => {
-            const target = data.service === 'vggbgcombot' ? 'logs1' : 'logs2';
-            const logContainer = document.getElementById(target);
-            const logEntry = `[${new Date().toLocaleTimeString()}] ${data.message}`;
-            logContainer.textContent += logEntry + '\n';
+            // Получаване на логове и добавяне към правилната клетка
+            socket.on("log", (data) => {
+                const target = data.service === "vggbgcombot" ? "logs1" : "logs2";
+                const logContainer = document.getElementById(target);
+                const logEntry = `[${new Date().toLocaleTimeString()}] ${data.message}`;
+                logContainer.textContent += logEntry + "\n";
 
-            // Автоматично скролиране до дъното
-            logContainer.scrollTop = logContainer.scrollHeight;
-        });
-    </script>
-      <div class="footer">
+                // Автоматично скролиране до дъното
+                logContainer.scrollTop = logContainer.scrollHeight;
+            });
+        </script>
+        <div class="footer">
             <script type="text/javascript">
                 function zforms_open_window(url, height, width) {
                     var leftPos = 0;
@@ -201,8 +201,7 @@
             <a href="https://forms.zohopublic.com/virtualoffice6913/form/ContactForm1/formperma/bJ2K6HfG3130MM7bMkB628053" target="_blank" onclick="zforms_open_window(this.href, 648, 700); return false" style="color: #424242;">
                 контактна форма
             </a>
-            | <a href="https://vgg-bg.com/discord" style="color: #424242;" target="_blank">discord</a> |
-            <a href="https://t.me/+7_XRl0bzOYFlMWVk" style="color: #424242;" target="_blank">telegram</a> <br />
+            | <a href="https://vgg-bg.com/discord" style="color: #424242;" target="_blank">discord</a> | <a href="https://t.me/+7_XRl0bzOYFlMWVk" style="color: #424242;" target="_blank">telegram</a> <br />
             📝 logsforsite.onrender.com 📝
             <script>
                 document.write(new Date().getFullYear());
