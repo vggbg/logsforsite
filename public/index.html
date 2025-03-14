@@ -136,37 +136,35 @@
         </style>
     </head>
     <body>
-        <h1>Логове на услугите</h1>
-    <div id="logs"></div>
+     <div class="service-container">
+        <div class="service-title">vggbgcombot</div>
+        <div id="logs1" class="logs">Зареждане...</div>
+    </div>
+
+    <div class="service-container">
+        <div class="service-title">keepalliverender</div>
+        <div id="logs2" class="logs">Зареждане...</div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Централизирани логове. Всички права запазени.</p>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
-        const logsDiv = document.getElementById('logs');
 
-        // Получаване на логове чрез WebSocket
+        // Визуализиране на логове за vggbgcombot
         socket.on('log', (data) => {
-            const logElement = document.createElement('div');
-            logElement.className = `log ${data.service === 'srv-cv8kd0i3esus73dft3lg' ? 'service1' : 'service2'}`;
-            logElement.textContent = `[${data.service}] ${data.message}`;
-            logsDiv.appendChild(logElement);
+            const target = data.service === 'vggbgcombot' ? 'logs1' : 'logs2';
+            const logContainer = document.getElementById(target);
+            const logEntry = `[${new Date().toLocaleTimeString()}] ${data.message}`;
+            logContainer.textContent += logEntry + '\n';
 
-            // Скролиране до дъното
-            logsDiv.scrollTop = logsDiv.scrollHeight;
+            // Автоматично скролиране до дъното
+            logContainer.scrollTop = logContainer.scrollHeight;
         });
     </script>
-        <div class="footer">
-            <script type="text/javascript">
-                function zforms_open_window(url, height, width) {
-                    var leftPos = 0;
-                    var topPos = 0;
-                    if (screen) {
-                        leftPos = (screen.width - width) / 2;
-                        topPos = (screen.height - height) / 2;
-                        window.open(url, null, "width=" + width + ",height=" + height + ",left=" + leftPos + ",top=" + topPos + ", toolbar=0, location=0, status=1, scrollbars=1, resizable=1");
-                    }
-                }
-            </script>
 
             <a href="https://forms.zohopublic.com/virtualoffice6913/form/ContactForm1/formperma/bJ2K6HfG3130MM7bMkB628053" target="_blank" onclick="zforms_open_window(this.href, 648, 700); return false" style="color: #424242;">
                 контактна форма
