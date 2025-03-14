@@ -5,14 +5,14 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Вашият Render API токен
+// API токен за Render
 const RENDER_API_TOKEN = 'rnd_BzWfpgsmGbUAUZd4rgZKtoTINN5V';
 
-// Идентификатори на услугите
+// Идентификатори на услуги
 const SERVICE_ID_1 = 'srv-cv8kd0i3esus73dft3lg';
 const SERVICE_ID_2 = 'srv-cv8octogph6c73ae6a6g';
 
-// За статични файлове (напр. index.html)
+// Сервиране на статични файлове (напр. index.html)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Рут за логовете
@@ -21,10 +21,10 @@ app.get('/logs', async (req, res) => {
         console.log('Запитване за логовете получено.');
 
         const logs1 = await getLogs(SERVICE_ID_1);
-        console.log(`Логове за услуга ${SERVICE_ID_1} извлечени успешно:`, logs1);
+        console.log(`Логове за услуга ${SERVICE_ID_1} извлечени успешно.`);
 
         const logs2 = await getLogs(SERVICE_ID_2);
-        console.log(`Логове за услуга ${SERVICE_ID_2} извлечени успешно:`, logs2);
+        console.log(`Логове за услуга ${SERVICE_ID_2} извлечени успешно.`);
 
         res.json({
             service1: logs1,
@@ -51,12 +51,4 @@ async function getLogs(serviceId) {
         console.log(`Успешно извлечени логове за услуга ${serviceId}.`);
         return response.data;
     } catch (error) {
-        console.error(`Грешка при извличане на логове за услуга ${serviceId}:`, error.response ? error.response.data : error.message);
-        throw error;
-    }
-}
-
-// Стартиране на сървъра
-app.listen(PORT, () => {
-    console.log(`Сървърът е стартиран на порт ${PORT}`);
-});
+        console.error(`
