@@ -169,7 +169,6 @@
     </head>
     <body>
         <h3>Централизирани логове</h3>
-
         <table>
             <tr>
                 <th>Услуга: vggbgcombot</th>
@@ -190,10 +189,12 @@
                 const target = data.service === "vggbgcombot" ? "logs1" : "logs2";
                 const logContainer = document.getElementById(target);
                 const logEntry = `[${new Date().toLocaleTimeString()}] ${data.message}`;
-                logContainer.textContent += logEntry + "\n";
+                
+                // Добавяне на новия лог най-отгоре
+                logContainer.textContent = logEntry + "\n" + logContainer.textContent;
 
-                // Автоматично скролиране до дъното
-                logContainer.scrollTop = logContainer.scrollHeight;
+                // Скрол до началото (по избор, ако е нужно)
+                logContainer.scrollTop = 0;
             });
         </script>
         <div class="footer">
