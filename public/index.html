@@ -136,25 +136,24 @@
         </style>
     </head>
     <body>
-     <div class="service-container">
-        <div class="service-title">vggbgcombot</div>
-        <div id="logs1" class="logs">Зареждане...</div>
-    </div>
+    <h1>Централизирани логове</h1>
 
-    <div class="service-container">
-        <div class="service-title">keepalliverender</div>
-        <div id="logs2" class="logs">Зареждане...</div>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2025 Централизирани логове. Всички права запазени.</p>
-    </div>
+    <table>
+        <tr>
+            <th>Услуга: vggbgcombot</th>
+            <th>Услуга: keepalliverender</th>
+        </tr>
+        <tr>
+            <td id="logs1" class="logs">Зареждане...</td>
+            <td id="logs2" class="logs">Зареждане...</td>
+        </tr>
+    </table>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
 
-        // Визуализиране на логове за vggbgcombot
+        // Получаване на логове и добавяне към правилната клетка
         socket.on('log', (data) => {
             const target = data.service === 'vggbgcombot' ? 'logs1' : 'logs2';
             const logContainer = document.getElementById(target);
