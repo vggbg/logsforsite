@@ -18,6 +18,13 @@ const serviceNames = {
 // Статични файлове (като index.html)
 app.use(express.static(path.join(__dirname, 'public')));
 
+const io = require('socket.io')(server, {
+    cors: {
+        origin: "https://vggbg.com", // Позволява заявки от този домейн
+        methods: ["GET", "POST"]
+    }
+});
+
 // WebSocket връзка
 io.on('connection', (socket) => {
     console.log('Клиент се свърза чрез WebSocket.');
