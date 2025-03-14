@@ -1,1 +1,284 @@
-c3bf2ec3543326e25b0b30f00970c1276975c66a
+<!DOCTYPE html>
+<html lang="bg">
+    <head>
+        <meta charset="utf-8" />
+        <title>logsforsite.onrender.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="https://fonts.googleapis.com/css?family=Arsenal&amp;subset=latin,cyrillic-ext" rel="stylesheet" type="text/css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <style>
+            body:before,
+            body:after {
+                content: "";
+                position: fixed;
+                left: 0;
+                width: 100%;
+                height: 10px;
+                -webkit-box-shadow: 0px 0px 10px #424242;
+                -moz-box-shadow: 0px 0px 10px #424242;
+                box-shadow: 0px 0px 10px rgba(66, 66, 66, 0.5);
+                z-index: 100;
+            }
+
+            body:before {
+                top: -10px;
+            }
+
+            body:after {
+                bottom: -10px;
+            }
+
+            body {
+                font-family: "Arsenal", sans-serif;
+                font-size: 100.01%;
+                color: #424242;
+                background-color: #ffffff;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                padding-top: 80px;
+            }
+
+            .logo-container {
+                margin-bottom: 30px;
+            }
+
+            .login-container {
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 6px;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+                width: 300px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .login td {
+                padding: 8px;
+            }
+
+            .login input[type="text"],
+            .login input[type="password"] {
+                width: 100%;
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 14px;
+                box-shadow: 0 0 5px rgba(53, 174, 255, 0.5);
+            }
+
+            .login input[type="text"]:focus,
+            .login input[type="password"]:focus {
+                box-shadow: 0 0 10px rgba(234, 87, 55, 0.8);
+                outline: 1px solid #ea5737;
+            }
+
+            .input-button {
+                padding: 8px 25px;
+                background-color: #ea5737;
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 16px;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .input-button:hover {
+                background-color: #ff5733;
+            }
+            h3 {
+                text-align: center;
+                font-size: 16px;
+                color: #495057;
+            }
+            table {
+                width: 60%;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: left;
+                vertical-align: top;
+                width: 50%; /* Пропорционално разпределение */
+            }
+
+            th {
+                background-color: #f4f4f4;
+                font-size: 15px;
+            }
+            td {
+                height: 200px; /* Задава фиксирана височина за клетките */
+                overflow-y: auto; /* Добавя скрол ако логовете са много */
+            }
+            .logs {
+                white-space: pre-wrap;
+                font-family: "Courier New", Courier, monospace;
+                font-size: 14px;
+                color: #007bff;
+            }
+            .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 60px;
+                background-color: #f8f9fa;
+                font-family: "Arsenal", sans-serif;
+                color: #424242;
+                text-align: center;
+                padding-top: 10px;
+                border-top: 1px solid #dee2e6;
+            }
+
+            .footer a {
+                color: #007bff;
+                text-decoration: none;
+                margin: 0 10px;
+            }
+
+            .footer a:hover {
+                text-decoration: underline;
+            }
+
+            .email-label,
+            .password-label {
+                color: #424242;
+            }
+
+            .red-star {
+                color: red;
+            }
+
+            .statcounter {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Централизирани логове</h3>
+        <table>
+            <tr>
+                <th>Услуга: vggbgcombot</th>
+                <th>Услуга: keepalliverender</th>
+            </tr>
+            <tr>
+                <td id="logs1" class="logs">Зареждане...</td>
+                <td id="logs2" class="logs">Зареждане...</td>
+            </tr>
+        </table>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            const socket = io();
+
+            // Получаване на логове и добавяне към правилната клетка
+            socket.on("log", (data) => {
+                const target = data.service === "vggbgcombot" ? "logs1" : "logs2";
+                const logContainer = document.getElementById(target);
+                const logEntry = `[${new Date().toLocaleTimeString()}] ${data.message}`;
+                
+                // Добавяне на новия лог най-отгоре
+                logContainer.textContent = logEntry + "\n" + logContainer.textContent;
+
+                // Скрол до началото (по избор, ако е нужно)
+                logContainer.scrollTop = 0;
+            });
+        </script>
+        <div class="footer">
+            <script type="text/javascript">
+                function zforms_open_window(url, height, width) {
+                    var leftPos = 0;
+                    var topPos = 0;
+                    if (screen) {
+                        leftPos = (screen.width - width) / 2;
+                        topPos = (screen.height - height) / 2;
+                        window.open(url, null, "width=" + width + ",height=" + height + ",left=" + leftPos + ",top=" + topPos + ", toolbar=0, location=0, status=1, scrollbars=1, resizable=1");
+                    }
+                }
+            </script>
+            <a href="https://forms.zohopublic.com/virtualoffice6913/form/ContactForm1/formperma/bJ2K6HfG3130MM7bMkB628053" target="_blank" onclick="zforms_open_window(this.href, 648, 700); return false" style="color: #424242;">
+                контактна форма
+            </a>
+            | <a href="https://vgg-bg.com/discord" style="color: #424242;" target="_blank">discord</a> | <a href="https://t.me/+7_XRl0bzOYFlMWVk" style="color: #424242;" target="_blank">telegram</a> <br />
+            📝 logsforsite.onrender.com 📝
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+            <!-- Default Statcounter code for vgg-bg.com
+https://vgg-bg.com -->
+            <script type="text/javascript">
+                var sc_project = 12781959;
+                var sc_invisible = 0;
+                var sc_security = "380b1b9c";
+                var sc_text = 2;
+                var scJsHost = "https://";
+                document.write("<sc" + "ript type='text/javascript' src='" + scJsHost + "statcounter.com/counter/counter.js'></" + "script>");
+            </script>
+            <noscript>
+                <div class="statcounter">
+                    <a title="Web Analytics" href="https://statcounter.com/" target="_blank">
+                        <img class="statcounter" src="https://c.statcounter.com/12781959/0/380b1b9c/0/" alt="Web Analytics" referrerpolicy="no-referrer-when-downgrade" />
+                    </a>
+                </div>
+            </noscript>
+            <!-- End of Statcounter Code -->
+            <br />
+        </div>
+
+        <script type="text/javascript">
+            var init = function () {
+                document.getElementById("user").value = "";
+                document.getElementById("pass").value = "";
+                document.getElementById("user").focus();
+            };
+            if (window.addEventListener) {
+                window.addEventListener("load", init, false);
+            } else if (document.addEventListener) {
+                document.addEventListener("load", init, false);
+            }
+        </script>
+
+        <script>
+            function loadScript(url, callback) {
+                var script = document.createElement("script");
+                script.type = "text/javascript";
+                script.async = true;
+                if (script.readyState) {
+                    script.onreadystatechange = function () {
+                        if (script.readyState == "loaded" || script.readyState == "complete") {
+                            script.onreadystatechange = null;
+                            callback();
+                        }
+                    };
+                } else {
+                    // Others
+                    script.onload = function () {
+                        callback();
+                    };
+                }
+                script.src = url;
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+
+            loadScript("https://cdn.jsdelivr.net/npm/@widgetbot/crate@3", function () {
+                new Crate({
+                    server: "1205849757478686750",
+                    channel: "1205850544850075698", // #🌍from-web
+                });
+            });
+        </script>
+    </body>
+</html>
