@@ -21,10 +21,10 @@ app.get('/logs', async (req, res) => {
         console.log('Запитване за логовете получено.');
 
         const logs1 = await getLogs(SERVICE_ID_1);
-        console.log(`Логове за услуга ${SERVICE_ID_1} извлечени успешно.`);
+        console.log(`Логове за услуга ${SERVICE_ID_1} извлечени успешно:`, logs1);
 
         const logs2 = await getLogs(SERVICE_ID_2);
-        console.log(`Логове за услуга ${SERVICE_ID_2} извлечени успешно.`);
+        console.log(`Логове за услуга ${SERVICE_ID_2} извлечени успешно:`, logs2);
 
         res.json({
             service1: logs1,
