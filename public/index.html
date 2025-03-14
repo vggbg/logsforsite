@@ -136,26 +136,24 @@
         </style>
     </head>
     <body>
-        <h1>Logs for Service 1</h1>
-    <pre id="logs1">Loading...</pre>
-    <h1>Logs for Service 2</h1>
-    <pre id="logs2">Loading...</pre>
-    <script>
-        async function fetchLogs() {
-            try {
-                const response = await fetch('https://logsforsite.onrender.com/logs');
-                const data = await response.json();
-                document.getElementById('logs1').textContent = data.service1;
-                document.getElementById('logs2').textContent = data.service2;
-            } catch (error) {
-                console.error('Error fetching logs:', error);
-            }
-        }
+        <h1>Логове на услугите</h1>
+    <div id="logs"></div>
 
-        // Fetch logs every 5 minutes (300000 milliseconds)
-        setInterval(fetchLogs, 300000);
-        // Fetch logs on page load
-        fetchLogs();
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const logsDiv = document.getElementById('logs');
+
+        // Получаване на логове чрез WebSocket
+        socket.on('log', (data) => {
+            const logElement = document.createElement('div');
+            logElement.className = `log ${data.service === 'srv-cv8kd0i3esus73dft3lg' ? 'service1' : 'service2'}`;
+            logElement.textContent = `[${data.service}] ${data.message}`;
+            logsDiv.appendChild(logElement);
+
+            // Скролиране до дъното
+            logsDiv.scrollTop = logsDiv.scrollHeight;
+        });
     </script>
         <div class="footer">
             <script type="text/javascript">
